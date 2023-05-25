@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>CDAC Student Management App</title>
+        <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    </head>
+    <body>
+
+        <header>
+            <nav class="navbar navbar-expand-md navbar-dark"
+                 style="background-color:tomato">
+                <div>
+                    <a href="#" class="navbar-brand"> CDAC Student Management App </a>
+                </div>
+
+                <ul class="navbar-nav ml-auto">
+                    <li><a th:href="@{/}"
+                           class="nav-link">Student Home</a></li>
+                    <li><a href="@{/logout}"
+                           class="nav-link">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+        <br>
+
+        <div class="row">
+            <div class="container">
+                <h3 class="text-center">Student List</h3>
+                <hr>
+                <div class="bg-secondary text-right">
+
+                    <a th:href="@{/new}" class="btn btn-outline-warning">Add New Student</a>
+                </div>
+                <br>
+        <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>City</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                            <tr th:each="student:${listStudent}">
+                                <td><label type=text th:text="${student.id}"/></td>
+                                <td><label type=text th:text="${student.name}"/></td>
+                                <td><label type=text th:text="${student.email}"/></td>
+                                <td><label type=text th:text="${student.city}"/></td>
+                                <td>
+                                    <a th:href="@{/edit/{id}(id=${student.id})}"><button class="btn btn-outline-warning">Edit</button></a>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                    <a th:href="@{/delete/{id}(id=${student.id})}"><button class="btn btn-outline-danger">Delete</button></a>
+                                </td>
+                            </tr>     
+                        
+                    </tbody>
+                </table>
+       
+    </body>
+</html>
